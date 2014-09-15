@@ -31,26 +31,26 @@ highlight SpecialKey guifg=#4a4a59  " Show control characters
 
 autocmd BufNewFile,Bufread *.xml set nowrap " Disable line wrapping for XML files
 
-" Plugin for runtime path management
-execute pathogen#infect()
-
 " Initialize Vundle
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
+Plugin 'gmarik/vundle'
 
 " Additionnal Bundles directly loaded via GitHub
-Bundle 'Soares/butane.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'kien/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'rodjek/vim-puppet'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'vim-scripts/VimClojure'
+Plugin 'Soares/butane.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'rodjek/vim-puppet'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-scripts/VimClojure'
+
+call vundle#end()
+filetype plugin indent on
 
 " Close all open buffers on entering a window if the only
 " buffer that's left is the NERDTree buffer
@@ -68,8 +68,6 @@ endfunction
 " Enable butane automappings to map b* commands to butane B* functions.
 " This way the :bd commands leaves window layout intact when deleting a buffer.
 let g:butane_automap = 1
-
-filetype plugin indent on
 
 " Enable Solarized colorscheme only in GUI. Torte otherwise.
 if has('gui_running')
