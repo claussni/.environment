@@ -72,6 +72,7 @@ let g:butane_automap = 1
 " Enable Solarized colorscheme only in GUI. Torte otherwise.
 if has('gui_running')
     colorscheme solarized
+    set background=dark
 else
     colorscheme torte
 endif
