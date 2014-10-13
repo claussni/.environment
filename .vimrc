@@ -30,6 +30,7 @@ highlight NonText guifg=#4a4a59     " Show invisible characters
 highlight SpecialKey guifg=#4a4a59  " Show control characters
 
 autocmd BufNewFile,Bufread *.xml set nowrap " Disable line wrapping for XML files
+autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby " Enable Ruby syntax colors for Vagrantfiles
 
 " Initialize Vundle
 filetype off
