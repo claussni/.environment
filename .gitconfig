@@ -3,9 +3,10 @@
 [color]
 	ui = true
 [alias]
-	fa = fetch --all --tags --prune
-	ll = log --oneline --max-count=25
-	st = status --short
+	fa  = fetch --all --tags --prune
+    fap = !git fetch --all --tags --prune && git pull
+	ll  = log --oneline --max-count=25
+	st  = status --short
 [core]
     excludesfile = /home/claussni/.gitignore_global
     safecrlf = true
