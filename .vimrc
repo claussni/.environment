@@ -66,9 +66,8 @@ function! s:CloseIfOnlyNerdTreeLeft()
     endif
 endfunction
 
-" Enable butane automappings to map b* commands to butane B* functions.
-" This way the :bd commands leaves window layout intact when deleting a buffer.
-let g:butane_automap = 1
+" Map :bd command to :Bclose for Butane window handling
+cmap bd Bclose
 
 " Enable Solarized colorscheme only in GUI. Torte otherwise.
 if has('gui_running')
@@ -78,8 +77,14 @@ else
     colorscheme torte
 endif
 
+" Easy buffer navigation
 noremap <C-F8> :NERDTreeToggle<CR>
 noremap <C-PageUp> :bn<CR>
 noremap <C-PageDown> :bp<CR>
+
+" Duplicating lines with Ctrl-D in normal
+" and in editing mode
+map <c-d> yy P
+imap <c-d> <esc>yyPi
 
 syntax on
