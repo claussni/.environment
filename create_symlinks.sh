@@ -1,6 +1,6 @@
 #!/bin/bash
-for target in ~/.environment/.*; do
+for target in ~/.environment/_*; do
     if [ -f $target ]; then
-        ln -sv $target "${target##*/}"
+        ln -sfnv $target ".${target##*/_}"
     fi
 done
