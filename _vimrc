@@ -37,7 +37,7 @@ autocmd BufNewFile,BufRead *.md set wrap linebreak tw=80 " Set friendly line wra
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " Additionnal Bundles directly loaded via GitHub
 Plugin 'Soares/butane.vim'
