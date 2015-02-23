@@ -109,21 +109,46 @@ if ! shopt -oq posix; then
   fi
 fi
 
-##
-## SCM info
-##
-scm_info() {
-	git_info=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	if [ "${git_info}" ]; then
-		if [ "$(git status -s)"  ]; then
-			git_color='\033[1;31m'
-		else
-			git_color='\033[1;36m'
-		fi
-		echo -e "${git_color}${git_info}"
-	fi
+# Git source code management info
+git_info() {
+    local RED='\033[1;31m'
+    local GREEN='\033[1;32m'
+    local CYAN='\033[1;36m'
+
+    local branch_info=`git branch -vv 2>/dev/null | grep -e '^\*'`
+
+    if [ "$branch_info" ]; then
+        local branch_name=`echo "$branch_info" | awk '{print $2}'`
+
+        if [[ "$branch_info" =~ ("ahead "([[:digit:]])) ]]; then
+            local ahead="${BASH_REMATCH[2]}"
+        else
+            local ahead=""
+        fi
+
+        if [[ "$branch_info" =~ ("behind "([[:digit:]])) ]]; then
+            local behind="${BASH_REMATCH[2]}"
+        else
+            local behind=""
+        fi
+
+        if [ -n "`git status -s 2>/dev/null`" ]; then
+            local color=$RED
+        else
+            local color=$CYAN
+        fi
+
+        echo -e -n "${color}${branch_name} "
+
+        if [[ "$ahead" || "$behind" ]]; then
+            echo -n "("
+            [ "$ahead" ] && echo -e -n "${GREEN}+${ahead}"
+            [ "$ahead" ] && [ "$behind" ] && echo -e -n "${color},"
+            [ "$behind" ] && echo -e -n "${RED}-${behind}"
+            echo -e -n "${color})"
+        fi
+    fi
 }
-PS1='\n\[\033[1;32m\][\w] $(scm_info)\[\033[0m\]\n\$ '
-##
-## / SCM info
-##
+
+# Prompt configuration
+PS1='\n\[\033[1;32m\][\w] $(git_info)\[\033[0m\]\n\$ '
