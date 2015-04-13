@@ -120,13 +120,13 @@ git_info() {
     if [ "$branch_info" ]; then
         local branch_name=`echo "$branch_info" | awk '{print $2}'`
 
-        if [[ "$branch_info" =~ ("ahead "([[:digit:]])) ]]; then
+        if [[ "$branch_info" =~ ("ahead "([[:digit:]]+)) ]]; then
             local ahead="${BASH_REMATCH[2]}"
         else
             local ahead=""
         fi
 
-        if [[ "$branch_info" =~ ("behind "([[:digit:]])) ]]; then
+        if [[ "$branch_info" =~ ("behind "([[:digit:]]+)) ]]; then
             local behind="${BASH_REMATCH[2]}"
         else
             local behind=""
