@@ -13,7 +13,5 @@
 	autocrlf = input
 [push]
 	default = simple
-[help]
-	autocorrect = 30
 [branch]
 	autosetupmerge = true
