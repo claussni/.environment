@@ -11,5 +11,12 @@ color_maven() {
 
     return $PIPESTATUS
 }
-
 alias mvn=color_maven
+
+# Filter .git folders from find output
+alias nogitfind="command find"
+nogit_find() {
+    nogitfind $* | grep -v '\.git'
+    return $PIPESTATUS
+}
+alias find=nogit_find
