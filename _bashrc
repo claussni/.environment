@@ -152,3 +152,6 @@ git_info() {
 
 # Prompt configuration
 PS1='\n\[\033[1;32m\][\w] $(git_info)\[\033[0m\]\n\$ '
+
+# Local binary paths
+export PATH=~/.local/bin:$PATH
