@@ -7,6 +7,8 @@
 	fap = !git fetch --all --tags --prune && git pull
 	ll  = log --oneline --max-count=25
 	st  = status --short
+	pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+	pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 [core]
 	excludesfile = /home/claussni/.gitignore_global
 	safecrlf = true
