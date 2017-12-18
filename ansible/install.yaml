@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  tasks:
+      - name: install system packages
+        action: >
+            package name={{ item }} state=latest update_cache=yes
+        with_items:
+            - openssh-client
+            - openssh-server
+
+      - name: install virtualization packages
+        action: >
+            package name={{ item }} state=latest update_cache=yes
+        with_items:
+            - vagrant
+            - virtualbox
+            - virtualbox-dkms
+            - virtualbox-qt
+
+      - name: install basic development packages
+        action: >
+            package name={{ item }} state=latest update_cache=yes
+        with_items:
+            - git
+            - git-extras
+            - tig
+            - vim
+
+      - name: install java development environment
+        action: >
+            package name={{ item }} state=latest update_cache=yes
+        with_items:
+            - ant
+            - default-jdk
+            - maven
