@@ -1,6 +1,16 @@
 ---
 - hosts: localhost
   tasks:
+      - name: setup bash configuration
+        file:
+            path: ~/.{{ item }}
+            src: ~/.environment/_{{ item }}
+            state: link
+            force: yes
+        with_items:
+            - bash_aliases
+            - bashrc
+
       - name: install system packages
         action: >
             package name={{ item }} state=latest update_cache=yes
