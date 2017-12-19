@@ -17,14 +17,45 @@
             - virtualbox-dkms
             - virtualbox-qt
 
-      - name: install basic development packages
+      - name: install git environment
         action: >
             package name={{ item }} state=latest update_cache=yes
         with_items:
             - git
             - git-extras
             - tig
+
+      - name: setup git configuration
+        file:
+            path: ~/.{{ item }}
+            src: ~/.environment/_{{ item }}
+            state: link
+            force: yes
+        with_items:
+            - gitconfig
+            - gitignore_global
+
+      - name: install vim environment
+        action: >
+            package name={{ item }} state=latest update_cache=yes
+        with_items:
             - vim
+            - vim-gtk
+
+      - name: install vundle plugin
+        git:
+            repo: 'https://github.com/VundleVim/Vundle.vim.git'
+            dest: ~/.vim/bundle/Vundle.vim
+
+      - name: setup vim configuration
+        file:
+            path: ~/.vimrc
+            src: ~/.environment/_vimrc
+            state: link
+            force: yes
+
+      - name: install vundle plugins
+        command: vim +PluginInstall +qall
 
       - name: install java development environment
         action: >
