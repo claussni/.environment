@@ -75,3 +75,10 @@
             - ant
             - default-jdk
             - maven
+
+      - name: install remote desktop packages
+        action: >
+            package name={{ item }} state=latest update_cache=yes
+        with_items:
+            - remmina
+            - remmina-plugin-rdp
