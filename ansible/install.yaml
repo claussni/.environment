@@ -82,3 +82,10 @@
         with_items:
             - remmina
             - remmina-plugin-rdp
+
+      - name: install file sharing packages
+        action: >
+            package name={{ item }} state=latest update_cache=yes
+        with_items:
+            - dropbox
+            - owncloud-client
