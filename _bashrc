@@ -155,3 +155,9 @@ PS1='\n\[\033[1;32m\][\w] $(git_info)\[\033[0m\]\n\$ '
 
 # Local binary paths
 export PATH=~/.local/bin:$PATH
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+if [ -d ~/.sdkman ]; then
+    export SDKMAN_DIR="/home/claussni/.sdkman"
+    [[ -s "/home/claussni/.sdkman/bin/sdkman-init.sh" ]] && source "/home/claussni/.sdkman/bin/sdkman-init.sh"
+fi
