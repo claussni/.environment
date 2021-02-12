@@ -4,3 +4,6 @@ out/
 *.swp
 .attach_pid*
 .vscode/
+.classpath
+.project
+.settings/
